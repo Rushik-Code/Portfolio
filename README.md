@@ -1,6 +1,6 @@
 # Rushik's Portfolio
 
-A self-contained portfolio with an actual WebGL 3D telescope, metallic surfaces, glass optics, a hollow optical barrel, and a scroll-controlled camera path. An animated black hole, pulsar, and nebula open About, Learning, and Education. The interface includes smooth scrolling, section navigation, a phone navigation dock, progressive text reveals, and a reduced-motion control. Three.js and Lenis are bundled locally; no installation or build is needed. Google Fonts is optional.
+A self-contained portfolio with an actual WebGL 3D telescope, metallic surfaces, glass optics, a hollow optical barrel, and a scroll-controlled camera path. An animated black hole, pulsar, and comet open About, Learning, and Education. A 3D astronaut searching for a radio signal opens Contacts. The interface includes smooth scrolling, section navigation, a phone navigation dock, progressive text reveals, and a reduced-motion control. Three.js and Lenis are bundled locally; no installation or build is needed. Google Fonts is optional.
 
 ## Preview your website
 
@@ -37,7 +37,7 @@ Click **Sound: off** to enable a quiet, locally generated ambient soundtrack. Cl
 
 ## Steer the telescope
 
-Choose **Steer telescope** on the home page. Drag with a mouse or swipe on a phone to aim. Arrow keys also steer. Use the zoom slider, **Reset view** (or R), and **Exit telescope** (or Escape). Click the labeled black hole, pulsar, nebula, or comet to visit the associated portfolio content. Exiting returns you to the page without changing your scroll position.
+Choose **Steer telescope** on the home page. Drag with a mouse or swipe on a phone to aim. Arrow keys also steer. Use the zoom slider, **Reset view** (or R), and **Exit telescope** (or Escape). Click the labeled black hole, pulsar, comet, or astronaut to visit the associated portfolio content. Exiting returns you to the page without changing your scroll position.
 
 
 ## Opening universe animation
@@ -47,21 +47,15 @@ Each page load starts with a short accelerating star tunnel and expanding cosmic
 
 ## Cinematic celestial destinations
 
-Select the black hole, pulsar, nebula, or comet from the universe map or telescope view. A roughly 2.5-second perspective camera journey passes through an original dark void with accelerating white, cyan, and violet light fragments at different depths. The motion falls into a short still moment, then the void blends away over 0.6 seconds to reveal the selected object in the split destination view. Celestial objects and galaxies remain hidden during travel. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the void effect.
+Select the black hole, pulsar, comet, or astronaut from the universe map or telescope view. A roughly 2.5-second perspective camera journey passes through an original dark void with accelerating white, cyan, and violet light fragments at different depths. The motion falls into a short still moment, then the void blends away over 0.6 seconds to reveal the selected object in the split destination view. Celestial objects and galaxies remain hidden during travel. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the void effect.
 
-The universe overview keeps simpler animated markers. Detailed models fade in during the approach: a ray-bent black-hole accretion disk, rotating pulsar beams, photographic nebula filaments with subtle depth and drift, and a rocky comet with flowing tails. The camera follows a gently curved approach before settling into the right half of the desktop screen.
+The universe overview keeps simpler animated markers. Detailed models appear after arrival: a ray-bent black-hole accretion disk, rotating pulsar beams, a rocky comet with flowing tails, and an astronaut with an animated receiver. The camera follows a gently curved approach before settling into the right half of the desktop screen.
 
-Celestial visuals are original illustrative 3D models, not a scientific simulation or a true-scale representation. Their motion is inspired by NASA guides on black-hole accretion, rotating pulsar beams, nebula gas, and comet dust and ion tails. Each destination links to its NASA object guide.
+Celestial visuals are original illustrative 3D models, not a scientific simulation or a true-scale representation. Their motion is inspired by NASA guides on black-hole accretion, rotating pulsar beams, nebula gas, and comet dust and ion tails. 
 
 
-## Close-up visual assets
+## Close-up models and controls
 
-The nebula uses a blue reflection-cloud design with a dark central cavity, silver filaments, depth-separated stars, and gentle gas drift. It is an original AI-generated astronomical illustration, not an actual NASA photograph. Its photographic texture is stored at `dist/assets/nebula-reflection-v2.png`, combined with gentle gas drift and depth-separated stars. The other close-ups use animated procedural 3D surfaces and shaders: ray-bent turbulent accretion light, luminous pulsar plasma, and high-resolution rocky comet geometry with fine relief and directional shading. These remain artistic visualizations rather than exact scientific reconstructions.
+The four destinations are Black hole / About, Pulsar / Learning, Comet / Education, and Astronaut / Contacts. The nebula destination has been removed. All close-ups use local procedural 3D geometry or shaders; no model downloads are needed.
 
-The nebula asset was created with the built-in image generator. Prompt: “Original photographic astronomical illustration for a WebGL close-up: a wide wispy blue reflection nebula, silver-blue translucent gas curling around a deep dark central cavity, intricate threadlike filaments and charcoal molecular dust, a few warm ivory stars embedded at varying depths. Natural restrained astrophotography, extremely detailed gas scattering, luminous but never neon. Completely different from orange pillars of creation. A sculptural asymmetric horseshoe of gas with dark open space at center; subject contained in central 80 percent of square image, fading gradually into pure black on all four edges. No text, labels, frames, planets, solid surface, cartoons, purple cotton blobs, or excessive star spikes. Fine photographic detail, elegant cinematic depth.”
-
-The black hole has a slimmer edge-on disk, radial luminosity falloff, orbiting turbulence, a brighter approaching side, and a completely dark captured-ray shadow.
-
-## Rotate close-up objects
-
-After arrival, drag on the object view or swipe on a phone to orbit through a full 360 degrees horizontally and tilt vertically. Focus the viewer and use arrow keys for keyboard control. Choose Reset view or press R to restore the starting angle. The black-hole ray shader changes its view of the disk with the orbit; the nebula is rendered as a textured gas volume so it has depth from side and rear views. Pulsar and comet retain their animated 3D geometry. These are illustrative reconstructions.
+After arrival, drag or swipe on the object area for full horizontal 360-degree rotation and vertical tilt. Arrow keys also work. Choose Reset view or press R to restore the starting angle. The astronaut floats gently, turns its helmet, and raises a receiver with expanding signal rings. Contacts includes the supplied email, GitHub, and LinkedIn links.

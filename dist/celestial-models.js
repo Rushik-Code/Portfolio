@@ -34,20 +34,28 @@ float fractal(vec3 p){return noise3(p)*.51+noise3(p*2.02)*.25+noise3(p*4.03)*.13
   for(const sign of [-1,1]){const beam=mesh(new T.ConeGeometry(.32,3.25,64,12,true),beamMat,axis);beam.position.y=sign*1.87;beam.rotation.z=sign>0?Math.PI:0;const core=mesh(new T.ConeGeometry(.055,3.4,32,1,true),beamMat,axis);core.position.y=sign*1.9;core.rotation.z=sign>0?Math.PI:0;}
   // Emission wisps replace diagram-like magnetic field outlines.
   updates.push(t=>{spin.rotation.y=t*2.6;star.rotation.y=t*.8;starMaterial.uniforms.time.value=t;beamMat.uniforms.time.value=t});root.rotation.z=-.24;
- }else if(kind==='nebula'){
-  root.userData.radius=3.1;
-  const texture=new T.TextureLoader().load(window.nebulaTextureSource||new URL('assets/nebula-reflection-v2.png',document.baseURI).href);texture.colorSpace=T.SRGBColorSpace;
-  const material=new T.ShaderMaterial({transparent:true,depthWrite:false,side:T.FrontSide,uniforms:{image:{value:texture},time:{value:0},fade:{value:1},eye:{value:new T.Vector3()}},vertexShader:'varying vec3 local;void main(){local=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:surfaceNoise+`varying vec3 local;uniform sampler2D image;uniform vec3 eye;uniform float time;uniform float fade;
-void main(){vec3 ray=normalize(local-eye),inv=1./ray,a=(-vec3(3.05,3.05,1.5)-eye)*inv,b=(vec3(3.05,3.05,1.5)-eye)*inv,near=min(a,b),far=max(a,b);float begin=max(max(near.x,near.y),near.z),end=min(min(far.x,far.y),far.z),stepSize=max(0.,end-max(begin,0.))/40.;vec3 point=eye+ray*max(begin,0.),color=vec3(0.);float opacity=0.;
-for(int i=0;i<40;i++){point+=ray*stepSize;vec2 uv=point.xy/6.1+.5;uv+=vec2(sin(point.z*1.6+time*.024),cos(point.z*1.3+time*.019))*.003*point.z;vec3 gas=texture2D(image,clamp(uv,0.,1.)).rgb;float light=dot(gas,vec3(.2126,.7152,.0722));float edge=smoothstep(0.,.12,uv.x)*smoothstep(0.,.12,1.-uv.x)*smoothstep(0.,.12,uv.y)*smoothstep(0.,.12,1.-uv.y);float depth=pow(max(0.,1.-abs(point.z)/1.5),.6);float density=smoothstep(.001,.07,light)*edge*depth*(.4+noise3(point*3.)*.6);float alpha=(1.-exp(-density*stepSize*1.6))*(1.-opacity);color+=gas*alpha;opacity+=alpha;}
-gl_FragColor=vec4(color/max(opacity,.001)*.88,opacity*fade);
-#include <tonemapping_fragment>
-#include <colorspace_fragment>
-}`});
-  const cloud=mesh(new T.BoxGeometry(6.1,6.1,3),material);cloud.onBeforeRender=(renderer,scene,camera)=>{if(!cloud.userData.oriented){cloud.quaternion.copy(camera.quaternion);cloud.userData.oriented=true}cloud.updateWorldMatrix(true,false);material.uniforms.eye.value.copy(camera.position);cloud.worldToLocal(material.uniforms.eye.value)};
-  // Depth-separated illuminated dust adds gentle parallax in front of the photographic gas.
-  const pos=[],colors=[];for(let i=0;i<150;i++){pos.push((random()-.5)*5.2,(random()-.5)*4.8,(random()-.5)*1.5);const c=new T.Color().setHSL(.1+random()*.55,.12,.7+random()*.25);colors.push(c.r,c.g,c.b)}particles(pos,colors,.018);
-  updates.push(t=>material.uniforms.time.value=t);
+ }else if(kind==='astronaut'){
+  root.userData.radius=2.7;
+  const figure=new T.Group();root.add(figure);figure.rotation.z=-.12;
+  const suit=new T.MeshPhysicalMaterial({color:0xd6e1e5,roughness:.78,metalness:.05,clearcoat:.15}),fabric=new T.MeshStandardMaterial({color:0x8d9da8,roughness:1}),trim=new T.MeshStandardMaterial({color:0x192c3d,roughness:.7,metalness:.2}),orange=new T.MeshStandardMaterial({color:0xc57638,roughness:.65}),visor=new T.MeshPhysicalMaterial({color:0x69471b,metalness:1,roughness:.15,clearcoat:1}),screenMat=new T.MeshStandardMaterial({color:0x8cd8c6,emissive:0x2f937c,emissiveIntensity:.8,roughness:.4});
+  function part(geo,mat,pos,scale,parent=figure){const m=mesh(geo,mat,parent);m.position.set(...pos);if(scale)m.scale.set(...scale);return m}
+  function limb(a,b,r,mat=suit,parent=figure){const av=new T.Vector3(...a),bv=new T.Vector3(...b),d=bv.clone().sub(av);const m=part(new T.CapsuleGeometry(r,Math.max(.01,d.length()-r*2),8,24),mat,av.clone().add(bv).multiplyScalar(.5).toArray(),null,parent);m.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());return m}
+  part(new T.CapsuleGeometry(.47,.67,12,40),suit,[0,.06,0],[1,.95,.73]);
+  part(new T.BoxGeometry(.74,1.04,.4),trim,[0,.13,-.42]);part(new T.BoxGeometry(.65,.86,.13),fabric,[0,.16,-.67]);
+  for(const x of [-.23,.23])part(new T.CylinderGeometry(.14,.14,.82,24),suit,[x,.1,-.7]);
+  const head=new T.Group();head.position.y=.93;figure.add(head);
+  part(new T.SphereGeometry(.5,56,40),suit,[0,0,0],[1,1.05,.96],head);
+  part(new T.SphereGeometry(.415,56,40),trim,[0,.015,.16],[1,1,.82],head);
+  part(new T.SphereGeometry(.385,56,40),visor,[0,.035,.24],[1,.91,.76],head);
+  part(new T.TorusGeometry(.34,.035,12,48),trim,[0,-.46,0],null,head).rotation.x=Math.PI/2;
+  for(const sign of [-1,1]){part(new T.SphereGeometry(.18,24,16),trim,[sign*.44,-.02,0],null,head);part(new T.SphereGeometry(.095,24,16),suit,[sign*.51,-.02,.01],null,head);limb([sign*.25,-.55,0],[sign*.32,-1.2,.06],.22);part(new T.SphereGeometry(.23,24,16),fabric,[sign*.32,-1.12,.08],[1,.7,1]);limb([sign*.32,-1.14,.06],[sign*.4,-1.76,.18],.2);part(new T.CapsuleGeometry(.2,.24,8,24),trim,[sign*.4,-1.8,.29],[1,.65,1.4]).rotation.x=Math.PI/2;part(new T.TorusGeometry(.21,.045,10,32),orange,[sign*.34,-1.45,.12]).rotation.x=Math.PI/2;}
+  part(new T.BoxGeometry(.44,.37,.12),trim,[0,.27,.36]);part(new T.BoxGeometry(.29,.14,.04),screenMat,[0,.32,.435]);for(let i=0;i<3;i++)part(new T.SphereGeometry(.028,16,12),i===0?orange:screenMat,[-.09+i*.09,.18,.44]);
+  const scanner=new T.Group();scanner.position.set(-.43,.42,0);figure.add(scanner);
+  limb([0,0,0],[-.37,-.22,.08],.18,suit,scanner);limb([-.37,-.22,.08],[-.49,.35,.22],.16,suit,scanner);part(new T.SphereGeometry(.17,24,20),suit,[-.49,.38,.22],[.9,1.15,.8],scanner);
+  part(new T.BoxGeometry(.21,.35,.13),trim,[-.5,.6,.29],null,scanner);part(new T.BoxGeometry(.13,.17,.035),screenMat,[-.5,.62,.37],null,scanner);limb([-.49,.77,.28],[-.49,1.15,.28],.015,trim,scanner);
+  limb([.43,.42,0],[.77,.03,.08],.19);limb([.77,.03,.08],[.72,-.28,.32],.16);part(new T.SphereGeometry(.17,24,16),suit,[.72,-.32,.35],[1,1.2,.9]);
+  const waves=[];for(let i=0;i<3;i++){const ring=part(new T.TorusGeometry(.25,.009,8,64),new T.MeshBasicMaterial({color:0x9bdcd9,transparent:true,opacity:.3,depthWrite:false}),[-.49,1.15,.28],null,scanner);waves.push(ring)}
+  updates.push(t=>{figure.position.y=Math.sin(t*.65)*.07;figure.rotation.y=Math.sin(t*.25)*.1;head.rotation.y=Math.sin(t*.55)*.22;scanner.rotation.y=Math.sin(t*.7)*.12;waves.forEach((ring,i)=>{const phase=(t*.45+i/3)%1;ring.scale.setScalar(.3+phase*3.2);ring.material.userData.originalOpacity=(1-phase)*.28})});
  }else{
   root.userData.radius=3.1;
   const rockMaterial=new T.ShaderMaterial({uniforms:{fade:{value:1}},vertexShader:'varying vec3 p;varying vec3 n;varying vec3 viewP;void main(){p=position;n=normalize(normalMatrix*normal);vec4 mv=modelViewMatrix*vec4(position,1.);viewP=mv.xyz;gl_Position=projectionMatrix*mv;}',fragmentShader:surfaceNoise+`varying vec3 p;varying vec3 n;varying vec3 viewP;uniform float fade;
