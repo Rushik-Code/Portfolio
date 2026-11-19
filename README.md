@@ -44,3 +44,10 @@ Choose **Steer telescope** on the home page. Drag with a mouse or swipe on a pho
 
 Each page load starts with a short accelerating star tunnel and expanding cosmic burst, then reveals the portfolio. Choose **Skip intro** or press Escape to enter immediately. The soundtrack remains off until the visitor enables it.
 
+
+## Cinematic celestial destinations
+
+Select the black hole, pulsar, nebula, or comet from the universe map or telescope view. A roughly 2.9-second perspective camera journey accelerates through world-space stars, adds velocity-based light trails, then decelerates to reveal a split destination view. Desktop layouts use a 45% information panel and 55% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the trails.
+
+Celestial visuals are original illustrative 3D models, not a scientific simulation or a true-scale representation. Their motion is inspired by NASA guides on black-hole accretion, rotating pulsar beams, nebula gas, and comet dust and ion tails. Each destination links to its NASA object guide.
+
