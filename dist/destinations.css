@@ -6,3 +6,15 @@
 .is-destination .page-reactive-stars{opacity:0}
 
 @media(min-width:701px){.destination-info{width:50%}.destination-object-label{left:54%}}
+
+/* Fast, layout-stable typing after arrival. Full sentences remain available to screen readers. */
+.destination-info.destination-typing>*{animation:none}
+.destination-type-word{display:inline-block;white-space:nowrap}
+.destination-link .destination-type-word{display:inline;white-space:normal}
+.destination-info .destination-type-word,.destination-info .destination-type-space,.destination-info .destination-type-glyph{font-size:inherit;letter-spacing:inherit;color:inherit;margin:0}
+.destination-type-glyph{opacity:0;animation:destination-type-on 1ms linear var(--type-delay) forwards}
+.destination-spoken{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
+@keyframes destination-type-on{to{opacity:1}}
+
+body.reduced .destination-type-glyph{opacity:1;animation:none}
+.destination-info .destination-type-word{display:inline-block}.destination-info .destination-type-glyph,.destination-info .destination-type-space{display:inline}.destination-info .destination-link .destination-type-word{display:inline;white-space:normal}
