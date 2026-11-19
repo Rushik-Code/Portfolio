@@ -47,7 +47,9 @@ Each page load starts with a short accelerating star tunnel and expanding cosmic
 
 ## Cinematic celestial destinations
 
-Select the black hole, pulsar, nebula, or comet from the universe map or telescope view. A roughly 2.9-second perspective camera journey accelerates through world-space stars, adds velocity-based light trails, then decelerates to reveal a split destination view. Desktop layouts use a 45% information panel and 55% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the trails.
+Select the black hole, pulsar, nebula, or comet from the universe map or telescope view. A roughly 2.9-second perspective camera journey accelerates through world-space stars, adds velocity-based light trails, then decelerates to reveal a split destination view. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the trails.
+
+The universe overview keeps simpler animated markers. Detailed models fade in during the approach: a ray-bent black-hole accretion disk, rotating pulsar beams, volumetric nebula gas, and a rocky comet with flowing tails. The camera follows a gently curved approach before settling into the right half of the desktop screen.
 
 Celestial visuals are original illustrative 3D models, not a scientific simulation or a true-scale representation. Their motion is inspired by NASA guides on black-hole accretion, rotating pulsar beams, nebula gas, and comet dust and ion tails. Each destination links to its NASA object guide.
 
