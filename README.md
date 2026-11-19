@@ -47,7 +47,7 @@ Each page load starts with a short accelerating star tunnel and expanding cosmic
 
 ## Cinematic celestial destinations
 
-Select the black hole, pulsar, nebula, or comet from the universe map or telescope view. A roughly 2.9-second perspective camera journey opens a curved blue-violet wormhole around the camera. Flowing gas, luminous ribs, and a soft exit surround the selected destination before fading as the camera decelerates into a split destination view. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the wormhole.
+Select the black hole, pulsar, nebula, or comet from the universe map or telescope view. A roughly 5-second perspective camera journey opens a curved blue-violet wormhole around the camera. Flowing gas, luminous ribs, and a soft exit surround the selected destination before fading as the camera decelerates into a split destination view. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the wormhole.
 
 The universe overview keeps simpler animated markers. Detailed models fade in during the approach: a ray-bent black-hole accretion disk, rotating pulsar beams, photographic nebula filaments with subtle depth and drift, and a rocky comet with flowing tails. The camera follows a gently curved approach before settling into the right half of the desktop screen.
 
