@@ -15,7 +15,7 @@ function blackhole(c,t){
  for(const p of dust.slice(0,100)){const a=p.a+t*.1,r=76+p.r*60,x=Math.cos(a)*r,y=Math.sin(a)*r*.27;if(y<0&&Math.abs(x)<59)continue;c.fillStyle=`rgba(255,210,147,${p.s*.6})`;c.fillRect(x,y,p.s*1.8+.3,.8)}c.restore();
 }
 function pulsar(c,t){
- c.save();c.rotate(-.55+Math.sin(t*.35)*.08);
+ c.save();c.rotate(-.55+t*1.5);
  // Twin polar beams emerge from a compact neutron star.
  for(const sign of [-1,1]){const g=c.createLinearGradient(0,sign*14,0,sign*165);g.addColorStop(0,'#e1fbffb0');g.addColorStop(.18,'#74cfff70');g.addColorStop(1,'#386fff00');c.fillStyle=g;c.beginPath();c.moveTo(-5,sign*10);c.lineTo(-31,sign*165);c.quadraticCurveTo(0,sign*190,31,sign*165);c.lineTo(5,sign*10);c.closePath();c.fill();c.strokeStyle='#baf6ff88';c.lineWidth=1.2;c.beginPath();c.moveTo(0,sign*12);c.lineTo(0,sign*145);c.stroke()}
  for(const sign of [-1,1])for(let i=0;i<5;i++){c.beginPath();c.ellipse(sign*(24+i*7),0,32+i*9,62+i*10,sign*.25,0,Math.PI*2);c.strokeStyle=`rgba(93,169,255,${.14-i*.022})`;c.lineWidth=1;c.stroke()}

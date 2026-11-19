@@ -33,7 +33,7 @@ float fractal(vec3 p){return noise3(p)*.51+noise3(p*2.02)*.25+noise3(p*4.03)*.13
   const beamMat=new T.ShaderMaterial({transparent:true,side:T.DoubleSide,depthWrite:false,blending:T.AdditiveBlending,uniforms:{fade:{value:1},time:{value:0}},vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:surfaceNoise+'varying vec2 v;uniform float fade;uniform float time;void main(){float tip=pow(v.y,1.1);float stripe=pow(.5+.5*cos(v.x*6.283185),5.);float wisps=fractal(vec3(v.x*14.,v.y*23.-time*.9,time*.08));float a=tip*(.035+stripe*.2)*(.4+wisps);gl_FragColor=vec4(.45,.72,1.,a*fade);}'});
   for(const sign of [-1,1]){const beam=mesh(new T.ConeGeometry(.32,3.25,64,12,true),beamMat,axis);beam.position.y=sign*1.87;beam.rotation.z=sign>0?Math.PI:0;const core=mesh(new T.ConeGeometry(.055,3.4,32,1,true),beamMat,axis);core.position.y=sign*1.9;core.rotation.z=sign>0?Math.PI:0;}
   // Emission wisps replace diagram-like magnetic field outlines.
-  updates.push(t=>{spin.rotation.y=t*.65;star.rotation.y=t*.2;starMaterial.uniforms.time.value=t;beamMat.uniforms.time.value=t});root.rotation.z=-.24;
+  updates.push(t=>{spin.rotation.y=t*2.6;star.rotation.y=t*.8;starMaterial.uniforms.time.value=t;beamMat.uniforms.time.value=t});root.rotation.z=-.24;
  }else if(kind==='nebula'){
   root.userData.radius=3.1;
   const texture=new T.TextureLoader().load(window.nebulaTextureSource||new URL('assets/nebula-reflection-v2.png',document.baseURI).href);texture.colorSpace=T.SRGBColorSpace;
