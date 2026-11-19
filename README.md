@@ -39,3 +39,8 @@ Click **Sound: off** to enable a quiet, locally generated ambient soundtrack. Cl
 
 Choose **Steer telescope** on the home page. Drag with a mouse or swipe on a phone to aim. Arrow keys also steer. Use the zoom slider, **Reset view** (or R), and **Exit telescope** (or Escape). Click the labeled black hole, pulsar, nebula, or comet to visit the associated portfolio content. Exiting returns you to the page without changing your scroll position.
 
+
+## Opening universe animation
+
+Each page load starts with a short accelerating star tunnel and expanding cosmic burst, then reveals the portfolio. Choose **Skip intro** or press Escape to enter immediately. The soundtrack remains off until the visitor enables it.
+
