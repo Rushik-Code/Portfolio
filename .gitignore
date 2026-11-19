@@ -1,0 +1,4 @@
+# Local hosting identity is separate from this GitHub repository.
+.openai/
+.DS_Store
+Thumbs.db
