@@ -59,3 +59,8 @@ Celestial visuals are original illustrative 3D models, not a scientific simulati
 The four destinations are Black hole / About, Pulsar / Learning, Comet / Education, and Astronaut / Contacts. The nebula destination has been removed. All close-ups use local procedural 3D geometry or shaders; no model downloads are needed.
 
 After arrival, drag or swipe on the object area for full horizontal 360-degree rotation and vertical tilt. Arrow keys also work. Choose Reset view or press R to restore the starting angle. The astronaut floats gently, turns its helmet, and raises a receiver with expanding signal rings. Contacts includes the supplied email, GitHub, and LinkedIn links.
+
+## Interactive radio
+
+Open Contacts, then click the astronaut's radio or choose Connect radio. A brief signal search and expanding pulse reveal email, GitHub, and LinkedIn. The radio target follows the 3D model while rotating. Send another signal replays the pulse. Drag gestures rotate without triggering the radio; the accessible button works with keyboard navigation. Reduced motion reveals contacts immediately.
+
