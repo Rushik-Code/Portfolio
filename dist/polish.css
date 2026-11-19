@@ -35,3 +35,5 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!
 
 /* Stars belong to each section background, below its text and controls. */
 .has-background-stars{isolation:isolate}.section-reactive-stars{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none}.destination-info.has-background-stars{isolation:isolate}
+
+.star-map>.constellation-route{display:block;position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:0}.star-map>.constellation-route path{fill:none;stroke:#c3ddb5;stroke-width:1.6;stroke-dasharray:1 8;stroke-linecap:round;stroke-opacity:.6;vector-effect:non-scaling-stroke}.star-map>.star-link{z-index:1}
