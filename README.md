@@ -49,7 +49,13 @@ Each page load starts with a short accelerating star tunnel and expanding cosmic
 
 Select the black hole, pulsar, nebula, or comet from the universe map or telescope view. A roughly 2.9-second perspective camera journey accelerates through world-space stars, adds velocity-based light trails, then decelerates to reveal a split destination view. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the trails.
 
-The universe overview keeps simpler animated markers. Detailed models fade in during the approach: a ray-bent black-hole accretion disk, rotating pulsar beams, volumetric nebula gas, and a rocky comet with flowing tails. The camera follows a gently curved approach before settling into the right half of the desktop screen.
+The universe overview keeps simpler animated markers. Detailed models fade in during the approach: a ray-bent black-hole accretion disk, rotating pulsar beams, photographic nebula filaments with subtle depth and drift, and a rocky comet with flowing tails. The camera follows a gently curved approach before settling into the right half of the desktop screen.
 
 Celestial visuals are original illustrative 3D models, not a scientific simulation or a true-scale representation. Their motion is inspired by NASA guides on black-hole accretion, rotating pulsar beams, nebula gas, and comet dust and ion tails. Each destination links to its NASA object guide.
 
+
+## Close-up visual assets
+
+The nebula uses an original AI-generated astronomical illustration, not an actual NASA photograph. Its photographic texture is stored at `dist/assets/nebula-photographic.png`, combined with gentle gas drift and depth-separated stars. The other close-ups use animated procedural 3D surfaces and shaders: ray-bent turbulent accretion light, luminous pulsar plasma, and high-resolution rocky comet geometry with fine relief and directional shading. These remain artistic visualizations rather than exact scientific reconstructions.
+
+The nebula asset was created with the built-in image generator. Prompt: “A photographic deep-space emission nebula texture, intricate hydrogen veils, dark branching molecular dust lanes, illuminated pillars, subtle teal oxygen and warm rust-red filaments, restrained Hubble-style astrophotography, sharp embedded stars, centered cloud fading into black; no text, planets, neon blobs, or icons.”
