@@ -36,7 +36,7 @@ float fractal(vec3 p){return noise3(p)*.51+noise3(p*2.02)*.25+noise3(p*4.03)*.13
   updates.push(t=>{spin.rotation.y=t*.65;star.rotation.y=t*.2;starMaterial.uniforms.time.value=t;beamMat.uniforms.time.value=t});root.rotation.z=-.24;
  }else if(kind==='nebula'){
   root.userData.radius=3.1;
-  const texture=new T.TextureLoader().load('assets/nebula-reflection-v2.png');texture.colorSpace=T.SRGBColorSpace;
+  const texture=new T.TextureLoader().load(window.nebulaTextureSource||new URL('assets/nebula-reflection-v2.png',document.baseURI).href);texture.colorSpace=T.SRGBColorSpace;
   const material=new T.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{image:{value:texture},time:{value:0},fade:{value:1}},vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:surfaceNoise+`varying vec2 v;uniform sampler2D image;uniform float time;uniform float fade;
   void main(){vec2 uv=v;vec2 center=uv-.5;float cloud=fractal(vec3(uv*5.,0.));vec2 drift=vec2(sin(time*.027),cos(time*.021))*.002;uv+=drift*cloud;vec3 photographic=texture2D(image,uv).rgb;float luminance=dot(photographic,vec3(.2126,.7152,.0722));float border=smoothstep(0.,.12,v.x)*smoothstep(0.,.12,1.-v.x)*smoothstep(0.,.12,v.y)*smoothstep(0.,.12,1.-v.y);float opacity=smoothstep(.001,.016,luminance)*border;gl_FragColor=vec4(photographic*.88,opacity*fade);
 #include <tonemapping_fragment>
