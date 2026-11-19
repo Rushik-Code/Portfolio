@@ -18,3 +18,5 @@
 
 body.reduced .destination-type-glyph{opacity:1;animation:none}
 .destination-info .destination-type-word{display:inline-block}.destination-info .destination-type-glyph,.destination-info .destination-type-space{display:inline}.destination-info .destination-link .destination-type-word{display:inline;white-space:normal}
+
+#destination-orbit{position:absolute;left:50%;right:0;top:85px;bottom:125px;pointer-events:auto;touch-action:none;cursor:grab;border-radius:24px}#destination-orbit.is-dragging{cursor:grabbing}#destination-orbit:focus-visible{outline:1px solid #b7d0d366;outline-offset:-8px}.destination-orbit-tools{position:absolute;right:4%;top:89px;display:flex;align-items:center;gap:15px;pointer-events:none}.destination-orbit-tools span{color:#9bb6c2;font-size:11px}.destination-orbit-tools button{pointer-events:auto;background:#0c1a24aa;border:1px solid #b2ced033;border-radius:22px;padding:9px 13px;color:#d9e6e9;font-size:11px}@media(max-width:700px){#destination-orbit{left:0;top:85px;bottom:67%}.destination-orbit-tools{top:65px;right:6%;gap:10px}.destination-orbit-tools span{font-size:9px}.destination-orbit-tools button{font-size:9px;padding:7px 10px}}
