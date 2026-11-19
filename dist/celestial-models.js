@@ -16,11 +16,11 @@ float fractal(vec3 p){return noise3(p)*.51+noise3(p*2.02)*.25+noise3(p*4.03)*.13
   const material=new T.ShaderMaterial({transparent:true,depthWrite:false,side:T.DoubleSide,uniforms:{time:{value:0},fade:{value:1}},vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:`precision highp float;varying vec2 v;uniform float time;uniform float fade;
   float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
   float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.)),f.x),f.y);}
-  vec3 diskLight(vec3 p){float r=length(p.xz),a=atan(p.z,p.x);vec2 flowUV=vec2(a*5.-time*.24/max(r,.5),r*17.);float turbulence=noise(flowUV)+.5*noise(flowUV*2.03)+.25*noise(flowUV*4.1);float fine=noise(vec2(r*78.,a*25.-time*.8));float heat=pow(clamp(1.-(r-1.45)/3.2,0.,1.),.6);vec3 col=mix(vec3(.29,.12,.055),vec3(1.,.83,.59),heat);float doppler=.68+.32*cos(a);return col*(.35+turbulence*.65+fine*.12)*doppler;}
-  void main(){vec2 p=(v-.5)*vec2(4.0,3.25);float turn=.16;mat2 rot=mat2(cos(turn),-sin(turn),sin(turn),cos(turn));p=rot*p;vec3 pos=vec3(0.,.72,8.5),ray=normalize(vec3(p.x,p.y-.06,-2.65));vec3 color=vec3(0.);float alpha=0.,ring=0.;bool captured=false;
+  vec3 diskLight(vec3 p){float r=length(p.xz),a=atan(p.z,p.x);float shear=a-time*.65/pow(r,1.5);vec2 uv=vec2(shear*7.,r*25.);float lanes=noise(uv)*.6+noise(uv*2.07)*.27+noise(uv*4.13)*.13;float filaments=pow(lanes,1.5);float temperature=exp(-(r-1.9)*.8);vec3 col=mix(vec3(.19,.075,.028),vec3(1.,.9,.73),temperature);float approaching=.5+.5*cos(a+.45);float doppler=.5+approaching*.9;return col*(.16+filaments*1.8)*doppler;}
+  void main(){vec2 p=(v-.5)*vec2(4.0,3.25);float turn=.24;mat2 rot=mat2(cos(turn),-sin(turn),sin(turn),cos(turn));p=rot*p;vec3 pos=vec3(0.,.36,8.5),ray=normalize(vec3(p.x,p.y-.06,-2.65));vec3 color=vec3(0.);float alpha=0.,ring=0.;bool captured=false;
   for(int i=0;i<144;i++){float r=length(pos);if(r<.92){captured=true;break;}if(r>19.)break;float stepSize=clamp(r*.052,.038,.45);vec3 previous=pos;vec3 bending=-pos*(1.45/(r*r*r));ray=normalize(ray+bending*stepSize);pos+=ray*stepSize;ring+=exp(-abs(r-1.18)*20.)*.012;
-  if(previous.y*pos.y<=0.){float fraction=previous.y/(previous.y-pos.y);vec3 hit=mix(previous,pos,fraction);float radius=length(hit.xz);float edge=smoothstep(1.35,1.75,radius)*(1.-smoothstep(4.2,4.8,radius));if(edge>.001){float emission=edge*.9*(1.-alpha);color+=diskLight(hit)*emission;alpha+=emission*.8;}}
-  }if(captured)ring=0.;color+=vec3(1.,.74,.46)*ring;if(captured)alpha=1.;alpha=max(alpha,clamp(ring*2.,0.,.65));float edgeFade=smoothstep(0.,.065,v.x)*smoothstep(0.,.065,1.-v.x)*smoothstep(0.,.065,v.y)*smoothstep(0.,.065,1.-v.y);gl_FragColor=vec4(color*1.8,alpha*fade*edgeFade);
+  if(previous.y*pos.y<=0.){float fraction=previous.y/(previous.y-pos.y);vec3 hit=mix(previous,pos,fraction);float radius=length(hit.xz);float edge=smoothstep(1.7,1.94,radius)*(1.-smoothstep(4.4,5.,radius))*exp(-max(radius-2.,0.)*.85);if(edge>.001){float emission=edge*.9*(1.-alpha);color+=diskLight(hit)*emission;alpha+=emission*.8;}}
+  }if(captured)ring=0.;color+=vec3(1.,.74,.46)*ring;if(captured)alpha=1.;alpha=max(alpha,clamp(ring*2.,0.,.65));float edgeFade=smoothstep(0.,.065,v.x)*smoothstep(0.,.065,1.-v.x)*smoothstep(0.,.065,v.y)*smoothstep(0.,.065,1.-v.y);gl_FragColor=vec4(color*1.15,alpha*fade*edgeFade);
 #include <tonemapping_fragment>
 #include <colorspace_fragment>
 }`});
@@ -36,9 +36,9 @@ float fractal(vec3 p){return noise3(p)*.51+noise3(p*2.02)*.25+noise3(p*4.03)*.13
   updates.push(t=>{spin.rotation.y=t*.65;star.rotation.y=t*.2;starMaterial.uniforms.time.value=t;beamMat.uniforms.time.value=t});root.rotation.z=-.24;
  }else if(kind==='nebula'){
   root.userData.radius=3.1;
-  const texture=new T.TextureLoader().load('assets/nebula-photographic.png');texture.colorSpace=T.SRGBColorSpace;
+  const texture=new T.TextureLoader().load('assets/nebula-reflection-v2.png');texture.colorSpace=T.SRGBColorSpace;
   const material=new T.ShaderMaterial({transparent:true,depthWrite:false,uniforms:{image:{value:texture},time:{value:0},fade:{value:1}},vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:surfaceNoise+`varying vec2 v;uniform sampler2D image;uniform float time;uniform float fade;
-  void main(){vec2 uv=v;vec2 center=uv-.5;float cloud=fractal(vec3(uv*5.,0.));vec2 drift=vec2(sin(time*.027),cos(time*.021))*.002;uv+=drift*cloud;vec3 photographic=texture2D(image,uv).rgb;float luminance=dot(photographic,vec3(.2126,.7152,.0722));float border=smoothstep(0.,.12,v.x)*smoothstep(0.,.12,1.-v.x)*smoothstep(0.,.12,v.y)*smoothstep(0.,.12,1.-v.y);float opacity=smoothstep(.004,.09,luminance)*border;gl_FragColor=vec4(photographic*1.08,opacity*fade);
+  void main(){vec2 uv=v;vec2 center=uv-.5;float cloud=fractal(vec3(uv*5.,0.));vec2 drift=vec2(sin(time*.027),cos(time*.021))*.002;uv+=drift*cloud;vec3 photographic=texture2D(image,uv).rgb;float luminance=dot(photographic,vec3(.2126,.7152,.0722));float border=smoothstep(0.,.12,v.x)*smoothstep(0.,.12,1.-v.x)*smoothstep(0.,.12,v.y)*smoothstep(0.,.12,1.-v.y);float opacity=smoothstep(.001,.016,luminance)*border;gl_FragColor=vec4(photographic*.88,opacity*fade);
 #include <tonemapping_fragment>
 #include <colorspace_fragment>
 }`});
