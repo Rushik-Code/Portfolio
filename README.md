@@ -1,6 +1,6 @@
 # Rushik's Portfolio
 
-A self-contained portfolio with an actual WebGL 3D telescope, metallic surfaces, glass optics, a hollow optical barrel, and a scroll-controlled camera path. An animated black hole, pulsar, and comet open About, Learning, and Education. A 3D astronaut searching for a radio signal opens Contacts. The interface includes smooth scrolling, section navigation, a phone navigation dock, progressive text reveals, and a reduced-motion control. Three.js and Lenis are bundled locally; no installation or build is needed. Google Fonts is optional.
+A self-contained portfolio with an actual WebGL 3D telescope, metallic surfaces, glass optics, a hollow optical barrel, and a scroll-controlled camera path. An animated black hole, star cluster, and comet open About, Learning, and Education. A 3D astronaut searching for a radio signal opens Contacts. The interface includes smooth scrolling, section navigation, a phone navigation dock, progressive text reveals, and a reduced-motion control. Three.js and Lenis are bundled locally; no installation or build is needed. Google Fonts is optional.
 
 ## Preview your website
 
@@ -37,7 +37,7 @@ Click **Sound: off** to enable a quiet, locally generated ambient soundtrack. Cl
 
 ## Steer the telescope
 
-Choose **Steer telescope** on the home page. Drag with a mouse or swipe on a phone to aim. Arrow keys also steer. Use the zoom slider, **Reset view** (or R), and **Exit telescope** (or Escape). Click the labeled black hole, pulsar, comet, or astronaut to visit the associated portfolio content. Exiting returns you to the page without changing your scroll position.
+Choose **Steer telescope** on the home page. Drag with a mouse or swipe on a phone to aim. Arrow keys also steer. Use the zoom slider, **Reset view** (or R), and **Exit telescope** (or Escape). Click the labeled black hole, star cluster, comet, or astronaut to visit the associated portfolio content. Exiting returns you to the page without changing your scroll position.
 
 
 ## Opening universe animation
@@ -47,16 +47,16 @@ Each page load starts with a short accelerating star tunnel and expanding cosmic
 
 ## Cinematic celestial destinations
 
-Select the black hole, pulsar, comet, or astronaut from the universe map or telescope view. A roughly 2.5-second perspective camera journey passes through an original dark void with accelerating white, cyan, and violet light fragments at different depths. The motion falls into a short still moment, then the void blends away over 0.6 seconds to reveal the selected object in the split destination view. Celestial objects and galaxies remain hidden during travel. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the void effect.
+Select the black hole, star cluster, comet, or astronaut from the universe map or telescope view. A roughly 2.5-second perspective camera journey passes through an original dark void with accelerating white, cyan, and violet light fragments at different depths. The motion falls into a short still moment, then the void blends away over 0.6 seconds to reveal the selected object in the split destination view. Celestial objects and galaxies remain hidden during travel. Desktop layouts use a 50% information panel and 50% celestial view; phone layouts stack the object above the scrollable information. Cancel, Universe map, and Back to telescope remain available. Reduced motion shortens the transition and disables the void effect.
 
-The universe overview keeps simpler animated markers. Detailed models appear after arrival: a ray-bent black-hole accretion disk, rotating pulsar beams, a rocky comet with flowing tails, and an astronaut with an animated receiver. The camera follows a gently curved approach before settling into the right half of the desktop screen.
+The universe overview keeps simpler animated markers. Detailed models appear after arrival: a ray-bent black-hole accretion disk, a gently drifting star cluster, a rocky comet with flowing tails, and an astronaut with an animated receiver. The camera follows a gently curved approach before settling into the right half of the desktop screen.
 
-Celestial visuals are original illustrative 3D models, not a scientific simulation or a true-scale representation. Their motion is inspired by NASA guides on black-hole accretion, rotating pulsar beams, nebula gas, and comet dust and ion tails. 
+Celestial visuals are original illustrative 3D models, not a scientific simulation or a true-scale representation. Their motion is inspired by NASA guides on black-hole accretion, a gently drifting star cluster, nebula gas, and comet dust and ion tails.
 
 
 ## Close-up models and controls
 
-The four destinations are Black hole / About, Pulsar / Learning, Comet / Education, and Astronaut / Contacts. The nebula destination has been removed. All close-ups use local procedural 3D geometry or shaders; no model downloads are needed.
+The four destinations are Black hole / About, Star cluster / Learning, Comet / Education, and Astronaut / Contacts. The nebula destination has been removed. All close-ups use local procedural 3D geometry or shaders; no model downloads are needed.
 
 After arrival, drag or swipe on the object area for full horizontal 360-degree rotation and vertical tilt. Arrow keys also work. Choose Reset view or press R to restore the starting angle. The astronaut floats gently, turns its helmet, and raises a receiver with expanding signal rings. Contacts includes the supplied email, GitHub, and LinkedIn links.
 
@@ -67,10 +67,14 @@ Open Contacts, then click the astronaut's radio or choose Connect radio. A brief
 
 ## Interactive star map
 
-Choose Star map from any portfolio section or Steer telescope on the home page. The compact map in the telescope view shows Black hole / About, Pulsar / Learning, Comet / Education, and Astronaut / Contacts. Choose a marker to smoothly aim the telescope; Explore opens the selected destination. Minimise collapses the map. Manual steering or Reset clears its target selection.
+Choose Star map from any portfolio section or Steer telescope on the home page. The compact map in the telescope view shows Black hole / About, Star cluster / Learning, Comet / Education, and Astronaut / Contacts. Choose a marker to smoothly aim the telescope; Explore opens the selected destination. Minimise collapses the map. Manual steering or Reset clears its target selection.
 
 
 ## Performance
 
 Hidden universe-map animations pause during telescope viewing and destination screens. Only the selected close-up model animates, and travel fragments stop updating after arrival. Star glow is cached instead of recalculated with a blur for every star. Rendering resolution starts with a lower pixel-density cap and adapts gradually to slow frames. The star density and interaction controls are retained.
 
+
+## Learning star cluster
+
+The Learning destination is a three-dimensional star cluster. Hover or keyboard-focus its universe marker to preview Currently learning C programming language. On touch devices, tap once for the preview and again to explore. The close-up viewer also shows the learning card on hover or focus; touch users can tap to toggle it. The telescope mini-map targets the same cluster.
