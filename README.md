@@ -79,3 +79,8 @@ Hidden universe-map animations pause during telescope viewing and destination sc
 
 The pulsar remains the Learning destination. Choose Explore my learning stars to scroll to a separate cluster inside Learning. Hover, click, or keyboard-select a star to switch the detail card. C is the only populated topic; the other two stars deliberately clear the card and remain empty. Edit the topics list in dist/learning-clusters.js when adding future subjects. The sky texture is painted only on resize to avoid a continuous animation cost.
 
+
+## Natural opening burst
+
+The speeding intro leads into cached turbulent gas textures, depth-separated debris, a cooling core, and a soft irregular shock front. During the final second the homepage starts rendering beneath the fading effect; controls remain inactive until the intro completes. Skip and Escape still enter the page directly.
+
