@@ -25,8 +25,15 @@ float fractal(vec3 p){return noise3(p)*.51+noise3(p*2.02)*.25+noise3(p*4.03)*.13
 #include <colorspace_fragment>
 }`});
   const lens=mesh(new T.PlaneGeometry(7.4,5.6),material);lens.onBeforeRender=(renderer,scene,camera)=>{lens.quaternion.copy(camera.quaternion);material.uniforms.orbit.value.set(root.userData.view?.yaw||0,root.userData.view?.pitch||0);lens.updateMatrixWorld()};updates.push(t=>material.uniforms.time.value=t);
- }else if(kind==='cluster'){
- root.userData.radius=2.9;const positions=[],colors=[];for(let i=0;i<1900;i++){const r=Math.pow(random(),1.65)*2.75,theta=random()*Math.PI*2,phi=Math.acos(2*random()-1);positions.push(Math.sin(phi)*Math.cos(theta)*r,Math.cos(phi)*r*.8,Math.sin(phi)*Math.sin(theta)*r);const c=new T.Color(i%9===0?0xffd9a0:i%3===0?0xa6caff:0xe7edff);colors.push(c.r,c.g,c.b)}const stars=particles(positions,colors,.065);const core=halo(0x9fbaff,2.8,.12);for(let i=0;i<12;i++){const star=halo(i%4===0?0xffd8a0:0xbfe0ff,.14+random()*.12,.65);star.position.set((random()-.5)*3.8,(random()-.5)*2.8,(random()-.5)*2.7)}updates.push(t=>{stars.rotation.y=t*.028;core.material.userData.originalOpacity=.11+Math.sin(t*.6)*.012});
+ }else if(kind==='pulsar'){
+  root.userData.radius=3.25;
+  const starMaterial=new T.ShaderMaterial({uniforms:{time:{value:0},fade:{value:1}},vertexShader:'varying vec3 p;varying vec3 normalView;void main(){p=position;normalView=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:surfaceNoise+`varying vec3 p;varying vec3 normalView;uniform float time;uniform float fade;void main(){vec3 q=normalize(p)*8.+vec3(0.,time*.025,0.);float cells=fractal(q*1.7);float fissures=pow(1.-abs(fractal(q*1.8)*2.-1.),9.);float limb=pow(max(normalView.z,0.),.32);vec3 heat=mix(vec3(.16,.35,.58),vec3(.75,.9,1.),cells);heat+=fissures*.12;gl_FragColor=vec4(heat*(.35+limb*.8),fade);}`});
+  const star=mesh(new T.SphereGeometry(.32,96,64),starMaterial);halo(0x9ccfff,.86,.38);halo(0x9ccfff,1.9,.09);
+  const spin=new T.Group();root.add(spin);const axis=new T.Group();axis.rotation.z=.47;spin.add(axis);
+  const beamMat=new T.ShaderMaterial({transparent:true,side:T.DoubleSide,depthWrite:false,blending:T.AdditiveBlending,uniforms:{fade:{value:1},time:{value:0}},vertexShader:'varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:surfaceNoise+'varying vec2 v;uniform float fade;uniform float time;void main(){float tip=pow(v.y,1.1);float stripe=pow(.5+.5*cos(v.x*6.283185),5.);float wisps=fractal(vec3(v.x*14.,v.y*23.-time*.9,time*.08));float a=tip*(.035+stripe*.2)*(.4+wisps);gl_FragColor=vec4(.45,.72,1.,a*fade);}'});
+  for(const sign of [-1,1]){const beam=mesh(new T.ConeGeometry(.32,3.25,64,12,true),beamMat,axis);beam.position.y=sign*1.87;beam.rotation.z=sign>0?Math.PI:0;const core=mesh(new T.ConeGeometry(.055,3.4,32,1,true),beamMat,axis);core.position.y=sign*1.9;core.rotation.z=sign>0?Math.PI:0;}
+  // Emission wisps replace diagram-like magnetic field outlines.
+  updates.push(t=>{spin.rotation.y=t*2.6;star.rotation.y=t*.8;starMaterial.uniforms.time.value=t;beamMat.uniforms.time.value=t});root.rotation.z=-.24;
  }else if(kind==='astronaut'){
  root.userData.radius=2.9;
  const figure=new T.Group();root.add(figure);figure.rotation.z=-.09;
