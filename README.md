@@ -64,3 +64,8 @@ After arrival, drag or swipe on the object area for full horizontal 360-degree r
 
 Open Contacts, then click the astronaut's radio or choose Connect radio. A brief signal search and expanding pulse reveal email, GitHub, and LinkedIn. The radio target follows the 3D model while rotating. Send another signal replays the pulse. Drag gestures rotate without triggering the radio; the accessible button works with keyboard navigation. Reduced motion reveals contacts immediately.
 
+
+## Interactive star map
+
+Choose Star map from any portfolio section or Steer telescope on the home page. The compact map in the telescope view shows Black hole / About, Pulsar / Learning, Comet / Education, and Astronaut / Contacts. Choose a marker to smoothly aim the telescope; Explore opens the selected destination. Minimise collapses the map. Manual steering or Reset clears its target selection.
+
