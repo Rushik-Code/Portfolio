@@ -77,8 +77,8 @@ float fractal(vec3 p){return noise3(p)*.51+noise3(p*2.02)*.25+noise3(p*4.03)*.13
   updates.push(t=>{nucleus.rotation.y=t*.12;nucleus.rotation.z=t*.035;const array=tail.geometry.attributes.position.array;tailData.forEach((p,i)=>{const d=(p.distance+t*.035)%1;array[i*3]=d*5;array[i*3+1]=Math.sin(p.angle)*p.spread*(.1+d*.7)+d*d*.65;array[i*3+2]=Math.cos(p.angle)*p.spread*(.1+d*.6)});tail.geometry.attributes.position.needsUpdate=true});
  }
  root.userData.update=t=>updates.forEach(update=>update(t));
- root.traverse(child=>{if(!child.material)return;for(const m of Array.isArray(child.material)?child.material:[child.material]){m.userData.originalOpacity=m.opacity;m.userData.originalTransparent=m.transparent}});
+ const materials=new Set();root.traverse(child=>{if(child.material)for(const m of Array.isArray(child.material)?child.material:[child.material])materials.add(m)});root.userData.materials=[...materials];for(const m of materials){m.userData.originalOpacity=m.opacity;m.userData.originalTransparent=m.transparent}
  return root;
 };
-window.setCelestialOpacity=(root,opacity)=>root.traverse(child=>{if(!child.material)return;for(const m of Array.isArray(child.material)?child.material:[child.material]){m.opacity=(m.userData.originalOpacity??1)*opacity;if(m.uniforms?.fade)m.uniforms.fade.value=opacity;const transparent=m.userData.originalTransparent||opacity<.999;if(m.transparent!==transparent){m.transparent=transparent;m.needsUpdate=true}}});
+window.setCelestialOpacity=(root,opacity)=>{for(const m of root.userData.materials){m.opacity=(m.userData.originalOpacity??1)*opacity;if(m.uniforms?.fade)m.uniforms.fade.value=opacity;const transparent=m.userData.originalTransparent||opacity<.999;if(m.transparent!==transparent){m.transparent=transparent;m.needsUpdate=true}}};
 })();

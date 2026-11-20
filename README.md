@@ -69,3 +69,8 @@ Open Contacts, then click the astronaut's radio or choose Connect radio. A brief
 
 Choose Star map from any portfolio section or Steer telescope on the home page. The compact map in the telescope view shows Black hole / About, Pulsar / Learning, Comet / Education, and Astronaut / Contacts. Choose a marker to smoothly aim the telescope; Explore opens the selected destination. Minimise collapses the map. Manual steering or Reset clears its target selection.
 
+
+## Performance
+
+Hidden universe-map animations pause during telescope viewing and destination screens. Only the selected close-up model animates, and travel fragments stop updating after arrival. Star glow is cached instead of recalculated with a blur for every star. Rendering resolution starts with a lower pixel-density cap and adapts gradually to slow frames. The star density and interaction controls are retained.
+
