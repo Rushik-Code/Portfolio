@@ -74,3 +74,8 @@ Choose Star map from any portfolio section or Steer telescope on the home page. 
 
 Hidden universe-map animations pause during telescope viewing and destination screens. Only the selected close-up model animates, and travel fragments stop updating after arrival. Star glow is cached instead of recalculated with a blur for every star. Rendering resolution starts with a lower pixel-density cap and adapts gradually to slow frames. The star density and interaction controls are retained.
 
+
+## Scrollable learning clusters
+
+The pulsar remains the Learning destination. Choose Explore my learning stars to scroll to a separate cluster inside Learning. Hover, click, or keyboard-select a star to switch the detail card. C is the only populated topic; the other two stars deliberately clear the card and remain empty. Edit the topics list in dist/learning-clusters.js when adding future subjects. The sky texture is painted only on resize to avoid a continuous animation cost.
+
